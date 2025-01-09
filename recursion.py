@@ -31,20 +31,29 @@ def permute(s):
                 print("out", out)
     return out
 
-plist = permute(["a","b","c"])
-print(plist)
+#plist = permute(["a","b","c"])
+#print(plist)
 
-
-def AppendPermlist(charlist, depth, currentstring):
-    if depth < 3:
-        for char in charlist:
-            currentstring.append(char)
-            AppendPermlist(charlist, depth + 1, currentstring)
-            currentstring.pop()
+#With repetition now
+def repetitionpermute(s, depth):
+    out = []
+    if depth > 1:
+        print("hit the end")
+        return s
     else:
-        print(currentstring)
-        return 0
+        for i, let in enumerate(s):
+            print("letter", let)
+            print("Current index", i)
+            print(s[:i] + s[i+1:])
+            for perm in repetitionpermute(s, depth + 1):
+                print("permutation",perm)
+                out += [let + perm]
+                print("out", out)
+    return out
 
+plist = repetitionpermute(["a","b","c"],0)
+print(plist)
+print(len(plist))
 
 
 
